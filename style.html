@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+         body{
+            margin: 0px;
+            padding:0px;
+        }
+       
+        a{
+          text-decoration: none;
+          color: #000;
+        }
+    .all-filter{
+        width: 100%;
+    }
+    .single-filter {
+    height: 44px;
+    width:18%;
+    float: left;
+    margin: 0px 0 10px 10px; 
+    }
+    .filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 44px;
+    
+    padding: 10px 8px;
+    text-transform: capitalize;
+    margin: 0 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)!important;
+  transition: background-color 0.3s;
+}
+.filter,
+.filter-btn,
+select {
+    width: 100%;
+    background-color: #f0f5fe; 
+    border: 1px solid #d0e2fb; 
+    border-radius: 4px;
+    color: #495057;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px; 
+}
+
+
+select:hover {
+    background-color: #e5effe; 
+}
+
+select:focus {
+    outline: none;
+    border-color: #80bdff; 
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+
+option {
+    
+    background-color: #f0f5fe; 
+    padding: 12px 8px;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+
+
+
+
+option:hover {
+    background-color: #e5effe; 
+}
+.popup-container {
+    margin-top: 5px;
+    width: 200px;
+    padding: 10px;
+    background-color: #ffffff; 
+    border: 1px solid #d0e2fb; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1;
+    position: absolute;
+}
+
+
+.popup-container input.date-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da; 
+    border-radius: 4px;
+    margin-bottom: 10px;
+   
+}
+
+
+.popup-container input.date-input[type="range"] {
+    width: calc(100% - 18px);
+}
+
+.popup-container.active {
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+.popup-container.transition {
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+}
+
+ 
+ .search-field-container {
+    height: 44px;
+    position: relative;
+    width: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin: 0 5px;
+}
+.search-container {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 95%;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 2px solid #d0e2fb;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container .search-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ced4da; 
+    border-radius: 8px;
+}
+
+
+.search-container .search-input:focus {
+    background-color: #ffffff;
+    border-color: #80bdff;
+    border:2px solid  #80bdff!important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+
+.search-container.transition {
+    transition: width 0.3s ease;
+}
+
+    .search-expanded {
+      width: 400px;
+    }
+ 
+.search-btn {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 4px;
+    text-transform: capitalize;
+    box-shadow: none;
+    transition: background-color 0.3s, transform 0.3s, margin-left 0.3s;
+    width: 50px;
+    height: 44px;
+    color: #757779;
+    border: none;
+    cursor: pointer;
+    justify-content: center;
+    background-color: #f0f5fe;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #d0e2fb; 
+}
+
+.search-btn:hover {
+    background-color: #e5effe;
+    transform: scale(.98);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+
+}
+
+@media only screen and (max-width: 600px) {
+    .single-filter{
+        width: 46%;
+
+    } 
+    .search-field-container{
+        width: 82%;
+    }
+    .search-container .search-input{
+        width:100%; 
+    }
+    .search-expanded {
+      display: none;
+    }
+    .search-btn{
+        float: left;
+    }
+    .popup-container {
+        width: 46%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="all-filter">
+            <div class="single-filter">
+                <select class="form-select filter" id="selectField">
+                  <option class="option-inside" value="1">catagories</option>
+                  <option class="option-inside" value="2">Option 2 catagories catagories</option>
+                  <option class="option-inside" value="3">Option 3</option>
+                </select>
+            </div>
+            <div class="single-filter">
+                <select class="form-select filter" id="selectField">
+                  <option class="option-inside" value="1">Author</option>
+                  <option class="option-inside" value="2">Option 2</option>
+                  <option class="option-inside" value="3">Option 3</option>
+                </select>
+            </div>
+            <div class="single-filter">
+                <select class="form-select filter" id="selectField">
+                  <option class="option-inside" value="1">Type</option>
+                  <option class="option-inside" value="2">Option 2</option>
+                  <option class="option-inside" value="3">Option 3</option>
+                </select>
+            </div>
+            <div class="single-filter">
+                <div class="filter filter-btn">date</div>
+                <div class="popup-container active" id="popupContainer">
+                        <label for="dateFrom"  class="date-input">From:</label>
+                        <input type="date" class="date-input" id="dateFrom" name="dateFrom">
+                        <label for="dateTo"  class="date-input">To:</label>
+                        <input type="date" id="dateTo"  class="date-input" name="dateTo">
+                </div>
+            </div>
+            <div class="search-field-container">
+               <div class="search-container">
+                  <input type="text" class="search-input" placeholder="Search...">
+                </div>          
+            </div>
+  
+            <div class="search-btn" id="search-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1.3rem" height="1.3rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </div>
+        </div>
+            
+
+        </div>
+    </div>
+    
+</body>
+<script>
+
+
+
+
+    const admin_panel = document.querySelector('.popup-container');
+    const button_menu = document.querySelector('.filter-btn');
+    
+    window.addEventListener('click', function(e){
+      if ( (admin_panel.classList.contains("active") && ( e.target.closest(".filter-btn"))) ||e.target.closest(".popup-container")) 
+      
+      {
+        admin_panel.classList.remove("active");
+       } 
+         
+      else
+      {
+        admin_panel.classList.add("active"); 
+      }
+    
+    });
+    
+    
+    // search-botton
+    const searchContainer = document.querySelector('.search-container');
+    const searchInput = document.querySelector('.search-input');
+    
+    searchInput.addEventListener('focus', () => {
+      searchContainer.classList.add('search-expanded');
+      document.addEventListener('click', handleOutsideClick);
+    });
+    
+    function handleOutsideClick(event) {
+      const isClickInsideSearchContainer = searchContainer.contains(event.target);
+    
+      if (!isClickInsideSearchContainer) {
+        collapseSearch();
+        document.removeEventListener('click', handleOutsideClick);
+      }
+    }
+    
+    function collapseSearch() {
+      searchContainer.classList.remove('search-expanded');
+    }
+    
+    // search-botton
+       
+    </script>
+</html>
